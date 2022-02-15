@@ -4,10 +4,14 @@ import numpy as np
 import json
 from fastapi import FastAPI
 import pickle as pikl
+from keras import backend as K
 
 app = FastAPI()
 
-loaded_model = load_model("best_model")
+def root_mean_squared_error(y_true, y_pred):
+        return K.sqrt(K.mean(K.square(y_pred - y_true))) 
+from tensorflow.keras.models import load_model
+loaded_model = load_model("er_model0", custom_objects={'root_mean_squared_error': root_mean_squared_error})
 
 
 @app.get("/")
