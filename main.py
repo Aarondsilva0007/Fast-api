@@ -8,10 +8,13 @@ from keras import backend as K
 
 app = FastAPI()
 
+
 def root_mean_squared_error(y_true, y_pred):
-        return K.sqrt(K.mean(K.square(y_pred - y_true))) 
-from tensorflow.keras.models import load_model
-loaded_model = load_model("er_model0", custom_objects={'root_mean_squared_error': root_mean_squared_error})
+    return K.sqrt(K.mean(K.square(y_pred - y_true)))
+
+
+loaded_model = load_model("er_model0", custom_objects={
+                          'root_mean_squared_error': root_mean_squared_error})
 
 
 @app.get("/")
