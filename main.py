@@ -6,6 +6,9 @@ from fastapi import FastAPI
 import pickle as pikl
 from keras import backend as K
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 app = FastAPI()
 
 
